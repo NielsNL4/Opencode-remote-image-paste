@@ -1,0 +1,40 @@
+{
+  "name": "opencode-remote-image-paste",
+  "displayName": "OpenCode Remote Image Paste",
+  "description": "Paste Windows clipboard images into an existing OpenCode terminal over VS Code Remote-SSH.",
+  "version": "0.1.1",
+  "publisher": "local",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "extensionKind": ["ui"],
+  "main": "./out/extension.js",
+  "activationEvents": ["onStartupFinished"],
+  "contributes": {
+    "commands": [
+      {
+        "command": "opencodeRemoteImagePaste.paste",
+        "title": "OpenCode: Paste Remote Clipboard Image"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "opencodeRemoteImagePaste.paste",
+        "key": "ctrl+v",
+        "when": "terminalFocus && opencodeRemoteImagePaste.available"
+      }
+    ]
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "test": "npm run compile && node --test out/test/*.test.js",
+    "package": "npm run compile && vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.6.0",
+    "typescript": "^5.9.0"
+  }
+}
